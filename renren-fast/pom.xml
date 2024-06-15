@@ -51,11 +51,11 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-test</artifactId>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -284,7 +284,15 @@
                     <displayCommandOutputs>true</displayCommandOutputs>
                 </configuration>
             </plugin>
-
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.0</version> <!-- 这里替换为你希望使用的版本 -->
+                <configuration>
+                    <!-- 如果需要，可以在这里添加额外的配置项，例如编码设置 -->
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
@@ -311,6 +319,26 @@
                 <!-- 运行命令 mvn clean package docker:build 打包并生成docker镜像 -->
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <!-- 对所有文件开启过滤，除了特定的二进制文件 -->
+                <filtering>true</filtering>
+                <excludes>
+                    <!-- 排除字体文件的筛选 -->
+                    <exclude>**/*.ttf</exclude>
+                </excludes>
+            </resource>
+            <!-- 对所有被排除的二进制文件进行不含过滤的复制 -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <!-- 包括字体文件 -->
+                    <include>**/*.ttf</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 
     <repositories>
@@ -336,5 +364,6 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
+
 
 </project>
