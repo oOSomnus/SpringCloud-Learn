@@ -17,6 +17,7 @@
         <module>renren-fast</module>
         <module>renren-generator</module>
         <module>gulimall-common</module>
+        <module>gulimall-gateway</module>
     </modules>
 
     <!-- 继承Spring boot工程 -->
@@ -65,7 +66,7 @@
         <reflections.version>0.9.11</reflections.version>
         <swagger.version>2.9.2</swagger.version>
         <knife4j.version>2.0.2</knife4j.version>
-        <com.alibaba.cloud>2.2.5.RELEASE</com.alibaba.cloud>
+        <com.alibaba.cloud>2021.1</com.alibaba.cloud>
         <xxl.job.version>2.2.0-SNAPSHOT</xxl.job.version>
         <spring.cloud.loadbalancer.version>4.1.0</spring.cloud.loadbalancer.version>
         <!--        <springTest.version>5.3.7</springTest.version>-->
